@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="fixed-bottom" style="margin-bottom: 70px; margin-left: 43px;">
-        <a href="">
+        <a href="{{ route('logout') }}">
             <button class="btn btn-danger fw-bold text-white btn-goto" type="button">Logout</button>
         </a>
     </div>

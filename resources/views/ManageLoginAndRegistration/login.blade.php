@@ -28,7 +28,8 @@
         </div>        
         <br>
         <div class="d-flex justify-content-center align-items-center">
-            <form action="" method="POST">
+            <form action="{{ route('login.post') }}" method="POST">
+                @csrf
                 <div style="width: 500px">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Email address:</label>
@@ -51,10 +52,11 @@
                 <br>
                 <div>
                     <input type="submit" name="login" value="Login" class="btn btn-primary">
+                    &nbsp;&nbsp;&nbsp;
                     <input type="reset" value="Reset" class="btn btn-danger">
                 </div>
             </form>
         </div>
-        </div>
+    </div>
 </body>
 </html>
