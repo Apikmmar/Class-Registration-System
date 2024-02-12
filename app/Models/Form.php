@@ -9,5 +9,12 @@ class Form extends Model
 {
     use HasFactory;
 
-    
+    protected $fillable = [
+        'form_number',
+        'form_class',
+    ];
+
+    public function classroom() {
+        return $this->hasMany(Classroom::class);
+    }
 }

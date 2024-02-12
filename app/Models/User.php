@@ -18,7 +18,15 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'class_id',
+        'addrole_id',
+        'role_id',
+        'user_name',
+        'user_ic',
+        'user_age',
+        'user_address',
+        'user_hp',
+        'user_photopath',
         'email',
         'password',
     ];
@@ -42,4 +50,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function role() {
+        return $this->hasOne(Role::class, 'id', 'role_id');
+    }
+
+    public function classroom() {
+        return $this->hasOne(Classroom::class, 'id', 'class_id');
+    }
+
+    public function addrole() {
+        return $this->hasOne(Add_Role::class, 'id', 'addrole_id');
+    }
 }
