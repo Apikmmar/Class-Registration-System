@@ -1,0 +1,26 @@
+.row-default {
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: rgb(236, 123, 148);;
+}
+
+.col-content {
+    margin-left: 360px;
+    margin-bottom: 50px;
+}
+
+.btn-goto {
+    width: 300px;
+}
+
+.lecimg {
+    height: auto;
+    width: 130px;
+}
