@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Auth\AuthManager;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('ManageDashboard.home');
+Route::get('/login', [AuthManager::class, 'login'])->name('login');
+Route::post('/login', [AuthManager::class, 'loginPost'])->name('login.post');
+
+Route::middleware(['auth'])->group(function() {
+
+
+    Route::get('/home', function () {
+        return view('ManageDashboard.home');
+    })->name('home');
 });
