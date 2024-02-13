@@ -8,7 +8,7 @@
             {{ session('success') }}
         </div>
     @endif
-        <form action="{{ route('profile.update', ['id' => $user->id]) }}" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="container d-flex">

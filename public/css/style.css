@@ -41,3 +41,8 @@
     height: auto;
     border-radius: 50%;
 }
+
+.operation_icon {
+    width: 30px;
+    height: auto;
+}

@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    //
     protected $session;
 
     public function __construct(Store $session) {

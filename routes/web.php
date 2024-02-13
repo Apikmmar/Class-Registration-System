@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Administrator\AddUserController;
+use App\Http\Controllers\Administrator\ManageUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -36,4 +37,7 @@ Route::middleware(['auth'])->group(function() {
     // USE BY ADMIN ONLY
     Route::get('/registeruser', [AddUserController::class, 'registerUser'])->name('registeruser');
     Route::post('/registeruser', [AddUserController::class, 'registerUserPost'])->name('registeruser.post');
+    Route::get('/alluser', [ManageUserController::class, 'alluser'])->name('alluser');
+    Route::delete('/alluser/{id}', [ManageUserController::class, 'destroyUser'])->name('user.destroy');
+    Route::get('/edituser/{id}', [ManageUserController::class, 'edituser'])->name('edituser');
 });
