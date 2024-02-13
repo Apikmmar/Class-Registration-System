@@ -51,6 +51,7 @@
                             <label for="exampleFormControlInput1" class="form-label">Role:</label>
                             <select name="role_id" class="form-control" required>
                                 <option selected>Select User</option>
+                                <option value="1">Administrator</option>
                                 <option value="2">Student</option>
                                 <option value="3">Teacher</option>
                             </select>
@@ -58,9 +59,11 @@
                     </div>
                     <br>
                     <div>
-                        <input type="submit" name="register" value="Add New User" class="btn btn-primary">
-                        &nbsp;&nbsp;&nbsp;
-                        <input type="reset" value="Reset" class="btn btn-danger">
+                        <button type="submit" class="btn btn-primary fw-bold">Add New User</button>
+                        @foreach (range(1, 5) as $item)
+                            &nbsp;
+                        @endforeach
+                        <button type="reset" class="btn btn-danger fw-bold">Reset</button>
                     </div>
                 </form>
             </div>
