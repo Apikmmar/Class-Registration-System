@@ -53,4 +53,10 @@ class ManageUserController extends Controller
     
         return view('ManageUser.alluser', compact('users'));
     }
+
+    public function filterRoleData(Request $request) {
+        $users = User::where('role_id', $request->role_id)->get();
+
+        return view('ManageUser.alluser', compact('users'));
+    }
 }
