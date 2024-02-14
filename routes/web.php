@@ -40,4 +40,5 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/alluser', [ManageUserController::class, 'alluser'])->name('alluser');
     Route::delete('/alluser/{id}', [ManageUserController::class, 'destroyUser'])->name('user.destroy');
     Route::get('/edituser/{id}', [ManageUserController::class, 'edituser'])->name('edituser');
+    Route::put('/edituser/{id}', [ManageUserController::class, 'editUserData'])->name('edituser.edit');
 });

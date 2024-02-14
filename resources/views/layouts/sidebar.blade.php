@@ -17,14 +17,15 @@
             <a href="{{ route('registeruser') }}">
                 <button class="btn btn-danger fw-bold text-white btn-goto" type="button">Register New User</button>
             </a>
-        @else
+        @elseif (auth()->check() && (auth()->user()->role_id == 2 || auth()->user()->role_id == 3))
             <a href="">
                 <button class="btn btn-danger fw-bold text-white btn-goto" type="button">View User</button>
             </a>
+            @endif
+            <br>
             <a href="{{ route('profile') }}">
                 <button class="btn btn-danger fw-bold text-white btn-goto" type="button">Profile</button>
             </a>
-        @endif
         </div>
     </div>
     <div class="fixed-bottom" style="margin-bottom: 70px; margin-left: 43px;">

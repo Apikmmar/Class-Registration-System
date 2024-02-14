@@ -47,6 +47,12 @@
                             <label for="exampleFormControlInput1" class="form-label">Password:</label>
                             <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="password" name="password" required>
                         </div>
+                        <div class="form-check d-flex justify-content-end" style="margin-top: -15px;">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">&nbsp;
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Set Password As IC Number
+                            </label>
+                        </div>
                         <div>
                             <label for="exampleFormControlInput1" class="form-label">Role:</label>
                             <select name="role_id" class="form-control" required>

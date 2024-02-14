@@ -30,6 +30,18 @@
             setTimeout(function(){
                 $('#success-message').fadeOut('slow');
             }, 3000);
+
+            $("#flexCheckChecked").change(function() {
+                var passwordInput = $('input[name="password"]');
+                var icInput = $('input[name="ic"], input[name="user_ic"]');
+                
+                if ($(this).is(":checked")) {
+                    passwordInput.val(icInput.val());
+                } else {
+                    passwordInput.val("");
+                }
+            });
+
         });
     </script>
 </body>
