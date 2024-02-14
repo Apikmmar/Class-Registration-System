@@ -27,7 +27,7 @@
                     <br>
                     <div class="d-flex mb-3">
                         <div class="col-3 d-flex align-items-center">
-                            <label for="exampleFormControlInput1" class="form-label">Name:</label>
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                         </div>
                         <div class="col-8">
                             <input type="input" class="form-control" name="name" value="{{ $user->user_name }}" placeholder="Your Name" required>

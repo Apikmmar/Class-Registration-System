@@ -48,4 +48,9 @@ class ManageUserController extends Controller
         return redirect(route('edituser', ['id' => $user->id]))->with('success', 'Successfully Update User Profile!');
     }
     
+    public function searchUserData(Request $request) {
+        $users = User::where('user_name', $request->searchname)->get();
+    
+        return view('ManageUser.alluser', compact('users'));
+    }
 }
