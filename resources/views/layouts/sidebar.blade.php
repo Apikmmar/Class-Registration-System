@@ -5,12 +5,15 @@
         </a>
     </div>
 
-    <div class="d-flex justify-content-center align-items-center" style="margin-top: 13vh;">
+    <div class="d-flex justify-content-center align-items-center" style="margin-top: 10vh;">
         <div class="d-grid gap-2">
             <a href="{{ route('home') }}">
                 <button class="btn btn-danger fw-bold text-white btn-goto" type="button">Home</button>
             </a>
         @if (auth()->check() && auth()->user()->role_id == 1)
+        <a href="{{ route('allforms') }}">
+            <button class="btn btn-danger fw-bold text-white btn-goto" type="button">All Forms</button>
+        </a>
             <a href="{{ route('alluser') }}">
                 <button class="btn btn-danger fw-bold text-white btn-goto" type="button">List Of User</button>
             </a>

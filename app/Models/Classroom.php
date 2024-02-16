@@ -16,10 +16,10 @@ class Classroom extends Model
     ];
 
     public function form() {
-        return $this->belongsTo(Form::class);
+        return $this->belongsTo(Form::class, 'id', 'form_id');
     }
 
     public function user() {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class, 'id', 'class_id');
     }
 }

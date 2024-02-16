@@ -47,7 +47,7 @@
                 </div>
             </div>
         @if ($users->isNotEmpty())
-            <table class="table table-bordered table-danger border-dark" style="margin-top: 20px">
+            <table class="table table-sm align-middle table-bordered table-danger border-dark" style="margin-top: 20px">
                 <thead>
                     <tr class="table-secondary border-dark">
                         <th scope="col" class="text-center">Num</th>

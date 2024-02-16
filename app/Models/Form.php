@@ -17,4 +17,9 @@ class Form extends Model
     public function classroom() {
         return $this->hasMany(Classroom::class);
     }
+
+    public function students()
+    {
+        return $this->hasManyThrough(User::class, Classroom::class, 'form_id', 'class_id', 'id');
+    }
 }
