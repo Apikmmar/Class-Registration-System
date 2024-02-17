@@ -19,10 +19,9 @@ class ManageFormController extends Controller
     
     public function formdetails($id) {
         $form = Form::findOrFail($id);
+        $classes = Classroom::all();
 
-        $numofstd = $form->students->count();
-
-        return view('ManageFormClass.formdetails', compact('form', 'numofstd'));
+        return view('ManageFormClass.formdetails', compact('form', 'classes'));
     }
 
     public function editformdetails(Request $request, $id) {
@@ -32,7 +31,7 @@ class ManageFormController extends Controller
 
         $form->update($input);
 
-        return redirect(route('formdetails', ['id' => $form->id]))->with('success', 'Successfully Number of Classes');
+        return redirect(route('formdetails', ['id' => $form->id]))->with('success', 'Successfully Update Number of Classes');
     }
     
 }

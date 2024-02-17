@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Administrator\AddUserController;
+use App\Http\Controllers\Administrator\ManageClassController;
 use App\Http\Controllers\Administrator\ManageFormController;
 use App\Http\Controllers\Administrator\ManageUserController;
 use App\Http\Controllers\AuthController;
@@ -47,7 +48,11 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/edituser/{id}', [ManageUserController::class, 'edituser'])->name('edituser');
     Route::put('/edituser/{id}', [ManageUserController::class, 'editUserData'])->name('edituser.edit');
 
-    Route::get('allforms', [ManageFormController::class, 'allforms'])->name('allforms');
+    Route::get('/allforms', [ManageFormController::class, 'allforms'])->name('allforms');
     Route::get('/formdetails/{id}', [ManageFormController::class, 'formdetails'])->name('formdetails');
     Route::put('/formdetails/{id}', [ManageFormController::class, 'editformdetails'])->name('formdetails.edit');
+    
+    Route::post('/formdetails', [ManageClassController::class, 'createNewClass'])->name('editclass.create');
+    Route::delete('/formdetails/{id}', [ManageClassController::class, 'deleteClass'])->name('class.delete');
+    Route::get('/editclass/{id}', [ManageClassController::class, 'editclass'])->name('editclass');
 });

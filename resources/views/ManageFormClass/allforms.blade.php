@@ -31,9 +31,7 @@
                             Number of classes: {{ $form->form_class }}
                             <ol>
                             @foreach ($classes->where('form_id', $form->id) as $class)
-                                <a href="">
-                                    <li>Class {{ $class->class_name }}</li>
-                                </a>
+                                <li>Class {{ $class->class_name }}</li>
                             @endforeach
                             </ol>
                         @else
