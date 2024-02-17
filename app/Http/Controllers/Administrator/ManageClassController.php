@@ -14,8 +14,9 @@ class ManageClassController extends Controller
     public function editclass($id) {
         $class = Classroom::findOrFail($id);
         $students = User::where('role_id', 2)->get();
+        $teachers = User::where('role_id', 3)->get();
 
-        return view('ManageFormClass.editclass', compact('class', 'students'));
+        return view('ManageFormClass.editclass', compact('class', 'students', 'teachers'));
     }
     
     public function createNewClass(Request $request) {
@@ -36,12 +37,13 @@ class ManageClassController extends Controller
 
     public function editClassData(Request $request, $id) {
         $class = Classroom::findOrFail($id);
-
-        $input['class_limit'] = $request->class_limit;
-
-        $class->update($input);
         
-        return redirect(route('editclass', ['id' => $class->id]))->with('success', 'Student Limit Changed');
+        $input['class_limit'] = $request->class_limit;
+        
+        $class->update($input);
+        $user = User::where('id', $request->addrole_teacher);
+        dd($user->user_name);
+        // return redirect(route('editclass', ['id' => $class->id]))->with('success', 'Class Data Changed');
     }
 
     public function deleteClass($id) {
@@ -63,12 +65,13 @@ class ManageClassController extends Controller
         $classid = [];
         
         if ($action == 'addstd') {
-            // $classid['class_id'] = $class->id;
-            // $student->update($classid);
+            $classid['class_id'] = $request->class_id;
+            $student->update($classid);
             
-            // return redirect(route('editclass', ['id' => $class->id]))->with('success', 'Student Added to Class');
+            return redirect(route('editclass', ['id' => $request->class_id]))->with('success', 'Student Added to Class');
         } elseif ($action == 'dropstd') {
             $class = Classroom::findOrFail($student->classroom->id);
+            
             $classid['class_id'] = null;
             $student->update($classid);
 

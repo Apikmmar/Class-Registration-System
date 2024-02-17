@@ -8,7 +8,7 @@
         </div>
     @endif
         <div style="margin-top: 30px">
-            <p class="h3 fw-bold">EDIT CLASS DATA</p>
+            <p class="h3 fw-bold">EDIT CLASS INFO</p>
             <form action="{{ route('editclass.edit', ['id' => $class->id]) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -28,10 +28,19 @@
                         <label for="inputPassword4" class="form-label">Class Limit:</label>
                         <input type="number" class="form-control" id="inputPassword4" value="{{ $class->class_limit }}" name="class_limit" required>
                     </div>
+                    <div class="col-md-6">
+                        <label for="inputPassword4" class="form-label">Select Class Teacher:</label>
+                        <select class="form-select" aria-label="Default select example" name="addrole_teacher" required>
+                            <option>Open this select menu</option>
+                        @foreach ($teachers as $teacher)
+                            <option value="{{ $teacher->user_id }}">{{ $teacher->user_name }}</option>
+                        @endforeach
+                        </select>
+                    </div>
                 </div>
                 <br>
                 <div class="col-12 d-flex justify-content-end">
-                    <button type="submit" class="btn btn-info text-light fw-bold">Edit Limit</button>
+                    <button type="submit" class="btn btn-info text-light fw-bold">Edit Info</button>
                     @foreach (range(1,5) as $item)
                         &nbsp;
                     @endforeach
@@ -62,7 +71,8 @@
                                 <form action="{{ route('editclass.adddropstd', ['id' => $std->id]) }}" method="post">
                                     @csrf
                                     @method('PUT')
-                                @if ($std->class_id == null) 
+                                @if ($std->class_id == null)
+                                    <input type="hidden" name="class_id" value="{{ $class->id }}">
                                     <button class="btn" name="action" value="addstd">
                                         <img src="{{ asset('default-image/addstudent.png') }}" alt="addstd.png" class="operation_icon">
                                     </button>
