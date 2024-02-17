@@ -32,6 +32,16 @@ class ManageClassController extends Controller
         return redirect(route('editclass', ['id' => $class->id]))->with('success', 'New Class Created');
     }
 
+    public function editClassData(Request $request, $id) {
+        $class = Classroom::findOrFail($id);
+
+        $input['class_limit'] = $request->class_limit;
+
+        $class->update($input);
+        
+        return redirect(route('editclass', ['id' => $class->id]))->with('success', 'Student Limit Changed');
+    }
+
     public function deleteClass($id) {
         $class = Classroom::findOrFail($id);
         $student = User::where('class_id', $class->id);

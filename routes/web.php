@@ -52,7 +52,8 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/formdetails/{id}', [ManageFormController::class, 'formdetails'])->name('formdetails');
     Route::put('/formdetails/{id}', [ManageFormController::class, 'editformdetails'])->name('formdetails.edit');
     
-    Route::post('/formdetails', [ManageClassController::class, 'createNewClass'])->name('editclass.create');
-    Route::delete('/formdetails/{id}', [ManageClassController::class, 'deleteClass'])->name('class.delete');
     Route::get('/editclass/{id}', [ManageClassController::class, 'editclass'])->name('editclass');
+    Route::post('/formdetails', [ManageClassController::class, 'createNewClass'])->name('editclass.create');
+    Route::put('/editclass/{id}', [ManageClassController::class, 'editClassData'])->name('editclass.edit');
+    Route::delete('/formdetails/{id}', [ManageClassController::class, 'deleteClass'])->name('class.delete');
 });
