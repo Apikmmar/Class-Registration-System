@@ -56,4 +56,5 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/formdetails', [ManageClassController::class, 'createNewClass'])->name('editclass.create');
     Route::put('/editclass/{id}', [ManageClassController::class, 'editClassData'])->name('editclass.edit');
     Route::delete('/formdetails/{id}', [ManageClassController::class, 'deleteClass'])->name('class.delete');
+    Route::put('/editclass/{id}/addordrop', [ManageClassController::class, 'adddropStudentClass'])->name('editclass.adddropstd');
 });

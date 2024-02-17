@@ -6,14 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Models\User;
 use Illuminate\Http\Request;
+use PhpParser\Builder\Class_;
 
 class ManageClassController extends Controller
 {
     //
     public function editclass($id) {
         $class = Classroom::findOrFail($id);
+        $students = User::where('role_id', 2)->get();
 
-        return view('ManageFormClass.editclass', compact('class'));
+        return view('ManageFormClass.editclass', compact('class', 'students'));
     }
     
     public function createNewClass(Request $request) {
@@ -53,4 +55,25 @@ class ManageClassController extends Controller
         
         return redirect(route('formdetails', ['id' => $class->form_id]))->with('success', 'Successfully Deleted Class');
     }
+
+    public function adddropStudentClass(Request $request, $id) {
+        $student = User::findOrFail($id);
+        
+        $action = $request->input('action');
+        $classid = [];
+        
+        if ($action == 'addstd') {
+            // $classid['class_id'] = $class->id;
+            // $student->update($classid);
+            
+            // return redirect(route('editclass', ['id' => $class->id]))->with('success', 'Student Added to Class');
+        } elseif ($action == 'dropstd') {
+            $class = Classroom::findOrFail($student->classroom->id);
+            $classid['class_id'] = null;
+            $student->update($classid);
+
+            return redirect(route('editclass', ['id' => $class->id]))->with('success', 'Student Dropped from Class');
+        }
+    }
+    
 }

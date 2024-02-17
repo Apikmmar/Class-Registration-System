@@ -39,5 +39,48 @@
                 </div>
             </form>
         </div>
+        <br>
+        <div>
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Number</th>
+                    <th scope="col">IC Number</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Handle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    @php $num = 1; @endphp
+                    @foreach ($students as $std)
+                    <tr>
+                        <th scope="row">{{ $num }}</th>
+                        <td>{{ $std->user_ic }}</td>
+                        <td>{{ $std->user_name }}</td>
+                        <td>
+                            <div class="d-flex">
+                                <form action="{{ route('editclass.adddropstd', ['id' => $std->id]) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                @if ($std->class_id == null) 
+                                    <button class="btn" name="action" value="addstd">
+                                        <img src="{{ asset('default-image/addstudent.png') }}" alt="addstd.png" class="operation_icon">
+                                    </button>
+                                @elseif ($std->class_id == $class->id) 
+                                    <button class="btn" name="action" value="dropstd">
+                                        <img src="{{ asset('default-image/dropstudent.png') }}" alt="dropstd.png" class="operation_icon">
+                                    </button>
+                                </form>
+                            </div>
+                                @else
+                            Student of class {{ $std->classroom->class_name }}
+                        @endif
+                        </td>
+                    </tr>
+                    @php $num++ @endphp
+                @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection
