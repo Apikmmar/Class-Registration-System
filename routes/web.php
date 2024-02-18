@@ -38,9 +38,8 @@ Route::middleware(['auth'])->group(function() {
 
 
     // USE BY ADMIN ONLY
-    Route::get('/registeruser', [AddUserController::class, 'registerUser'])->name('registeruser');
-    Route::post('/registeruser', [AddUserController::class, 'registerUserPost'])->name('registeruser.post');
-
+    Route::get('/registeruser', [ManageUserController::class, 'registerUser'])->name('registeruser');
+    Route::post('/registeruser', [ManageUserController::class, 'registerUserPost'])->name('registeruser.post');
     Route::get('/alluser', [ManageUserController::class, 'alluser'])->name('alluser');
     Route::get('/alluser/search', [ManageUserController::class, 'searchUserData'])->name('alluser.search');    
     Route::get('/alluser/filter', [ManageUserController::class, 'filterRoleData'])->name('alluser.filter');    
