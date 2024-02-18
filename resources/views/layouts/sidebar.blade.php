@@ -21,8 +21,8 @@
                 <button class="btn btn-danger fw-bold text-white btn-goto" type="button">Register New User</button>
             </a>
         @elseif (auth()->check() && (auth()->user()->role_id == 2 || auth()->user()->role_id == 3))
-            <a href="">
-                <button class="btn btn-danger fw-bold text-white btn-goto" type="button">View User</button>
+            <a href="{{ route('userdirectory') }}">
+                <button class="btn btn-danger fw-bold text-white btn-goto" type="button">User Directory</button>
             </a>
             @endif
             <br>

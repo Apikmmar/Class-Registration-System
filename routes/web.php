@@ -37,6 +37,11 @@ Route::middleware(['auth'])->group(function() {
     Route::put('profile/{id}', [UserController::class, 'updateProfile'])->name('profile.update');
 
 
+    // USE BY STUDENT AND TEACHER
+    Route::get('/userdirectory', [UserController::class, 'userdirectory'])->name('userdirectory');
+    Route::get('/userdirectory/search', [UserController::class, 'searchUserDirectory'])->name('userdirectory.search');
+
+
     // USE BY ADMIN ONLY
     Route::get('/registeruser', [ManageUserController::class, 'registerUser'])->name('registeruser');
     Route::post('/registeruser', [ManageUserController::class, 'registerUserPost'])->name('registeruser.post');

@@ -12,6 +12,12 @@ class UserController extends Controller
     public function home() {
         return view('ManageDashboard.home');
     }
+    
+    public function userdirectory() {
+        $users = User::whereIn('role_id', [2, 3])->get();
+
+        return view('ManageUser.userdirectory', compact('users'));
+    }
 
     public function profile() {
         $user = Auth::user();
@@ -43,5 +49,11 @@ class UserController extends Controller
         $user->update($input);
 
         return redirect(route('profile'))->with('success', 'Successfully Update Profile!');
+    }
+
+    public function searchUserDirectory(Request $request) {
+        $users = User::where('user_name', $request->searchname)->where('role_id', '<>', 1)->get();
+
+        return view('ManageUser.userdirectory', compact('users'))->with('success', 'Found The User!');
     }
 }
