@@ -42,7 +42,7 @@ class ManageClassController extends Controller
         
         $class->update($input);
         $user = User::where('id', $request->addrole_teacher);
-        dd($user->user_name);
+        dd($user);
         // return redirect(route('editclass', ['id' => $class->id]))->with('success', 'Class Data Changed');
     }
 
@@ -60,23 +60,30 @@ class ManageClassController extends Controller
 
     public function adddropStudentClass(Request $request, $id) {
         $student = User::findOrFail($id);
-        
+    
         $action = $request->input('action');
-        $classid = [];
-        
+    
         if ($action == 'addstd') {
-            $classid['class_id'] = $request->class_id;
-            $student->update($classid);
-            
-            return redirect(route('editclass', ['id' => $request->class_id]))->with('success', 'Student Added to Class');
+            return $this->addStudentToClass($request, $student);
         } elseif ($action == 'dropstd') {
-            $class = Classroom::findOrFail($student->classroom->id);
-            
-            $classid['class_id'] = null;
-            $student->update($classid);
-
-            return redirect(route('editclass', ['id' => $class->id]))->with('success', 'Student Dropped from Class');
+            return $this->dropStudentFromClass($request, $student);
         }
+    }
+    
+    protected function addStudentToClass(Request $request, $student) {
+        $classid['class_id'] = $request->class_id;
+        $student->update($classid);
+    
+        return redirect(route('editclass', ['id' => $request->class_id]))->with('success', 'Student Added to Class');
+    }
+    
+    protected function dropStudentFromClass(Request $request, $student) {
+        $class = Classroom::findOrFail($student->classroom->id);
+        
+        $classid['class_id'] = null;
+        $student->update($classid);
+    
+        return redirect(route('editclass', ['id' => $class->id]))->with('success', 'Student Dropped from Class');
     }
     
 }

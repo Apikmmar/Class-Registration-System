@@ -68,21 +68,25 @@
                         <td>{{ $std->user_name }}</td>
                         <td>
                             <div class="d-flex">
+                            @if ($std->class_id == null)
                                 <form action="{{ route('editclass.adddropstd', ['id' => $std->id]) }}" method="post">
                                     @csrf
                                     @method('PUT')
-                                @if ($std->class_id == null)
                                     <input type="hidden" name="class_id" value="{{ $class->id }}">
                                     <button class="btn" name="action" value="addstd">
                                         <img src="{{ asset('default-image/addstudent.png') }}" alt="addstd.png" class="operation_icon">
                                     </button>
-                                @elseif ($std->class_id == $class->id) 
+                                </form>
+                            @elseif ($std->class_id == $class->id)
+                                <form action="{{ route('editclass.adddropstd', ['id' => $std->id]) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
                                     <button class="btn" name="action" value="dropstd">
                                         <img src="{{ asset('default-image/dropstudent.png') }}" alt="dropstd.png" class="operation_icon">
                                     </button>
                                 </form>
                             </div>
-                                @else
+                            @else
                             Student of class {{ $std->classroom->class_name }}
                         @endif
                         </td>

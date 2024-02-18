@@ -118,6 +118,7 @@
                         <th scope="col" class="text-center">Num</th>
                         <th scope="col" class="text-center">Student Name</th>
                         <th scope="col" class="text-center">Student IC</th>
+                        <th scope="col" class="text-center">Student Class</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -127,6 +128,7 @@
                         <th scope="row">{{ $list }}</th>
                         <td>{{ $student->user_name }}</td>
                         <td>{{ $student->user_ic }}</td>
+                        <td>{{ $student->classroom->class_name }}</td>
                     </tr>
                     @php $list++; @endphp
                 @endforeach
