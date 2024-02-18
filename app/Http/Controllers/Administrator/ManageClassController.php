@@ -41,10 +41,12 @@ class ManageClassController extends Controller
         $input['class_limit'] = $request->class_limit;
         
         $class->update($input);
-        $user = User::where('id', $request->addrole_teacher);
-        dd($user);
-        // return redirect(route('editclass', ['id' => $class->id]))->with('success', 'Class Data Changed');
+        
+        User::where('id', $request->addrole_teacher)->update(['addrole_id' => 1, 'class_id' => $class->id]);
+        
+        return redirect(route('editclass', ['id' => $class->id]))->with('success', 'Class Data Changed');
     }
+    
 
     public function deleteClass($id) {
         $class = Classroom::findOrFail($id);

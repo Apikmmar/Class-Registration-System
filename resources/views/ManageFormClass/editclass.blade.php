@@ -30,12 +30,13 @@
                     </div>
                     <div class="col-md-6">
                         <label for="inputPassword4" class="form-label">Select Class Teacher:</label>
-                        <select class="form-select" aria-label="Default select example" name="addrole_teacher" required>
-                            <option>Open this select menu</option>
+                        <select class="form-select" aria-label="Select class teacher" name="addrole_teacher" required>
+                            <option value="" selected disabled>Select class teacher</option>
                         @foreach ($teachers as $teacher)
-                            <option value="{{ $teacher->user_id }}">{{ $teacher->user_name }}</option>
+                            <option value="{{ $teacher->id }}">{{ $teacher->user_name }}</option>
                         @endforeach
                         </select>
+                        
                     </div>
                 </div>
                 <br>
