@@ -59,7 +59,7 @@
                     @endforeach
                     <button type="reset" class="btn btn-danger fw-bold">Reset</button>
                 </div>
-              </form>
+            </form>
         </div>
         <br>
         <div>
@@ -124,13 +124,15 @@
                 <tbody>
                 @php $list = 1; @endphp
                 @foreach ($form->students as $student)
+                @if ($student->role_id == 2)
                     <tr class="text-center">
                         <th scope="row">{{ $list }}</th>
                         <td>{{ $student->user_name }}</td>
                         <td>{{ $student->user_ic }}</td>
                         <td>{{ $student->classroom->class_name }}</td>
                     </tr>
-                    @php $list++; @endphp
+                @endif
+                @php $list++; @endphp
                 @endforeach
                 </tbody>
             </table>

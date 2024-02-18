@@ -15,8 +15,9 @@ class ManageClassController extends Controller
         $class = Classroom::findOrFail($id);
         $students = User::where('role_id', 2)->get();
         $teachers = User::where('role_id', 3)->get();
+        $classteacher = User::where('role_id', 3)->where('class_id', $class->id)->first();
 
-        return view('ManageFormClass.editclass', compact('class', 'students', 'teachers'));
+        return view('ManageFormClass.editclass', compact('class', 'students', 'teachers', 'classteacher'));
     }
     
     public function createNewClass(Request $request) {
@@ -42,6 +43,7 @@ class ManageClassController extends Controller
         
         $class->update($input);
         
+        User::where('role_id', 3)->where('class_id', $class->id)->update(['addrole_id' => null, 'class_id' => null]);
         User::where('id', $request->addrole_teacher)->update(['addrole_id' => 1, 'class_id' => $class->id]);
         
         return redirect(route('editclass', ['id' => $class->id]))->with('success', 'Class Data Changed');

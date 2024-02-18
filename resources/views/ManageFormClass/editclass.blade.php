@@ -13,13 +13,17 @@
                 @csrf
                 @method('PUT')
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label for="inputEmail4" class="form-label">Class Name:</label>
                         <input type="text" class="form-control" id="inputEmail4" value="{{ $class->class_name }}" name="class_name" readonly>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label for="inputEmail4" class="form-label">Form:</label>
                         <input type="text" class="form-control" id="inputEmail4" value="{{ $class->form_id }}" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="inputEmail4" class="form-label">Class Teacher:</label>
+                        <input type="text" class="form-control" id="inputEmail4" value="{{ $classteacher ? $classteacher->user_name : 'No Class Teacher Assign Yet' }}" readonly>
                     </div>
                 </div>
                 <br>
@@ -29,7 +33,7 @@
                         <input type="number" class="form-control" id="inputPassword4" value="{{ $class->class_limit }}" name="class_limit" required>
                     </div>
                     <div class="col-md-6">
-                        <label for="inputPassword4" class="form-label">Select Class Teacher:</label>
+                        <label for="inputPassword4" class="form-label">Class Teacher:</label>
                         <select class="form-select" aria-label="Select class teacher" name="addrole_teacher" required>
                             <option value="" selected disabled>Select class teacher</option>
                         @foreach ($teachers as $teacher)
