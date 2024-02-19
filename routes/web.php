@@ -5,6 +5,7 @@ use App\Http\Controllers\Administrator\ManageClassController;
 use App\Http\Controllers\Administrator\ManageFormController;
 use App\Http\Controllers\Administrator\ManageUserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Student\ManageClassController as StudentManageClassController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -62,4 +63,8 @@ Route::middleware(['auth'])->group(function() {
     Route::put('/editclass/{id}', [ManageClassController::class, 'editClassData'])->name('editclass.edit');
     Route::delete('/formdetails/{id}', [ManageClassController::class, 'deleteClass'])->name('class.delete');
     Route::put('/editclass/{id}/addordrop', [ManageClassController::class, 'adddropStudentClass'])->name('editclass.adddropstd');
+
+
+    // USE BY USER ONLY
+    Route::get('/myclass', [StudentManageClassController::class, 'myclass'])->name('myclass');
 });

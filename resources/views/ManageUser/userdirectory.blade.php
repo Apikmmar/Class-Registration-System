@@ -20,7 +20,7 @@
             </div>
         </div>
     @if ($users->isNotEmpty())
-        <div style="margin-top: 30px">
+        <div>
             <p class="h3 fw-bold">List Of User</p>
                 <table class="table table-sm align-middle table-bordered table-danger border-dark" style="margin-top: 20px">
                     <thead>
