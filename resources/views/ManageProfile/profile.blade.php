@@ -79,12 +79,30 @@
                             <input type="input" class="form-control" name="email" value="{{ $user->email }}" placeholder="Your Email required">
                         </div>
                     </div>
+                @if ($user->class_id != null)
+                    @if ($user->addrole_id != null)
+                        @php
+                            $role = $user->addrole->addrole_name . ' of ' . $user->classroom->class_name; 
+                        @endphp
+                    @else
+                        @php
+                            $role = $user->role->role_name . ' of ' . $user->classroom->class_name; 
+                        @endphp
+                    @endif
+                @else
+                    @php
+                        $role = $user->role->role_name
+                    @endphp
+                @endif
+                @php
+                    $class = $user->class_id ? $user->classroom->class_name : 'No Class Yet';
+                @endphp
                     <div class="d-flex mb-3">
                         <div class="col-3 d-flex align-items-center">
                             <label for="exampleFormControlInput1" class="form-label">Role:</label>
                         </div>
                         <div class="col-8">
-                            <input type="input" class="form-control" name="password" value="{{ $user->role->role_name }}" placeholder="Your Password" readonly>
+                            <input type="input" class="form-control" name="password" value="{{ $role }}" placeholder="Your Password" readonly>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">

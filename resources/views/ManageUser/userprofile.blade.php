@@ -43,10 +43,20 @@
                     <input type="input" class="form-control" name="email" value="{{ $user->role->role_name }}" placeholder="Your Email" readonly>
                 </div>
             </div>
-            @php
-                $class = $user->class_id ? $user->classroom->class_name : 'No Class Yet';
-                $class_role = $user->addrole_id ? $user->addrole->addrole_name : 'No Role';
-            @endphp
+            @if ($user->class_id)
+                @php $class = $user->classroom->class_name; @endphp
+            @else
+                @php $class = 'No Class Yet'; @endphp
+            @endif
+
+            @if ($user->addrole_id)
+                @if ($user->role_id == 3)
+                    @php $class_role = $user->addrole->addrole_name . ' of ' . $class; @endphp                    
+                @endif
+            @else
+                @php $class_role = 'Not Applicable'; @endphp
+            @endif
+        @if ($user->role_id == 2)
             <div class="d-flex mb-3">
                 <div class="col-3 d-flex align-items-center">
                     <label for="exampleFormControlInput1" class="form-label">Class:</label>
@@ -55,13 +65,13 @@
                     <input type="input" class="form-control" name="email" value="{{ $class ?? 'No Class Yet' }}" placeholder="Your Class" readonly>
                 </div>
             </div>
-
+        @endif
             <div class="d-flex mb-3">
                 <div class="col-3 d-flex align-items-center">
                     <label for="exampleFormControlInput2" class="form-label">Class Role:</label>
                 </div>
                 <div class="col-8">
-                    <input type="input" class="form-control" name="class_role" value="{{ $class_role ?? 'No Role' }}" placeholder="Your Class Role" readonly>
+                    <input type="input" class="form-control" name="class_role" value="{{ $class_role }}" placeholder="Your Class Role" readonly>
                 </div>
             </div>
         </div>
