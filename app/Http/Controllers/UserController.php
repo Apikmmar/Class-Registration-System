@@ -14,7 +14,8 @@ class UserController extends Controller
     }
     
     public function userdirectory() {
-        $users = User::whereIn('role_id', [2, 3])->get();
+        $user = Auth::user();
+        $users = User::whereIn('role_id', [2, 3])->whereNotIn('id', [$user->id])->get();
 
         return view('ManageUser.userdirectory', compact('users'));
     }
@@ -23,6 +24,12 @@ class UserController extends Controller
         $user = Auth::user();
 
         return view('ManageProfile.profile', compact('user'));
+    }
+
+    public function userprofile($id) {
+        $user = User::findOrFail($id);
+
+        return view('ManageUser.userprofile', compact('user'));
     }
 
     public function updateProfile(Request $request, $id) {

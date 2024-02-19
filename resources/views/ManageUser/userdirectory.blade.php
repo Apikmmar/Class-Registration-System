@@ -33,10 +33,10 @@
                     <tbody>
                     @php $list = 1; @endphp
                     @foreach ($users as $user)
-                        <tr class="text-center"">
+                        <tr class="text-center">
                             <th scope="row">{{ $list }}</th>
                             <td>
-                                <a href="">{{ $user->user_name }}</a>
+                                <a href="{{ route('userprofile', ['id' => $user->id]) }}">{{ $user->user_name }}</a>
                             </td>
                             <td>{{ $user->role->role_name }}</td>
                         </tr>

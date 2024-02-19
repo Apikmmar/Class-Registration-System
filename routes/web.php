@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function() {
     // USE BY STUDENT AND TEACHER
     Route::get('/userdirectory', [UserController::class, 'userdirectory'])->name('userdirectory');
     Route::get('/userdirectory/search', [UserController::class, 'searchUserDirectory'])->name('userdirectory.search');
+    Route::get('/userprofile/{id}', [UserController::class, 'userprofile'])->name('userprofile');
 
 
     // USE BY ADMIN ONLY
