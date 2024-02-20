@@ -22,8 +22,11 @@
         @elseif ($isStudent || $isTeacher)
             @if ($isStudent && $currentUser->class_id != null)
                 <a href="{{ route('myclass') }}" class="btn btn-danger fw-bold text-white btn-goto">My Class</a>
-            @elseif ($isTeacher && $currentUser->class_id != null)
-                <a href="" class="btn btn-danger fw-bold text-white btn-goto">List Class</a>
+            @elseif ($isTeacher)
+                <a href="{{ route('formclasslist') }}" class="btn btn-danger fw-bold text-white btn-goto">Forms And Classes</a>
+                @if ($currentUser->class_id != null)
+                <a href="{{ route('manageclass') }}" class="btn btn-danger fw-bold text-white btn-goto">Manage My Class</a>
+                @endif
             @endif
             <a href="{{ route('userdirectory') }}" class="btn btn-danger fw-bold text-white btn-goto">User Directory</a>
         @endif

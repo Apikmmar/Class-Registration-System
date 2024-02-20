@@ -6,6 +6,7 @@ use App\Http\Controllers\Administrator\ManageFormController;
 use App\Http\Controllers\Administrator\ManageUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Student\ManageClassController as StudentManageClassController;
+use App\Http\Controllers\Teacher\ManageClassController as TeacherManageClassController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -67,4 +68,9 @@ Route::middleware(['auth'])->group(function() {
 
     // USE BY USER ONLY
     Route::get('/myclass', [StudentManageClassController::class, 'myclass'])->name('myclass');
+
+    // USE  BY TEACHER ONLY
+    Route::get('/formclasslist', [TeacherManageClassController::class, 'formclasslist'])->name('formclasslist');
+    Route::get('/classdetails/{id}', [TeacherManageClassController::class, 'classdetails'])->name('classdetails');
+    Route::get('/manageclass', [TeacherManageClassController::class, 'manageclass'])->name('manageclass');
 });
