@@ -7,6 +7,7 @@ use App\Models\Classroom;
 use App\Models\Form;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ManageClassController extends Controller
 {
@@ -26,6 +27,9 @@ class ManageClassController extends Controller
     }
 
     public function manageclass() {
-        return view('ManageFormClass.manageclass');
+        $teacher = Auth::user();
+        $class = Classroom::findOrFail($teacher->class_id);
+        $students = User::where('role_id', 2)->where('class_id', $class->id)->get();
+        return view('ManageFormClass.manageclass', compact('teacher', 'class', 'students'));
     }
 }
