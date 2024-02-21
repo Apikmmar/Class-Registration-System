@@ -50,7 +50,7 @@
             @endif
 
             @if ($user->addrole_id)
-                @if ($user->role_id == 3)
+                @if ($user->role_id == 2 || $user->role_id == 3)
                     @php $class_role = $user->addrole->addrole_name . ' of ' . $class; @endphp                    
                 @endif
             @else

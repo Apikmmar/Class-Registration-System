@@ -5,9 +5,12 @@
     <div class="container">
         <br>
         <p class="h3 fw-bold">Class {{ $class->class_name }}</p>
+    @if ($teacher == null)
+        <p class="h3 fw-bold">Class Teacher Has Not Been Set Up</p>
+    @else
         <div class="row">            
             <div class="d-flex align-items-center">
-                @if ($teacher->user_photopath)
+                @if ($teacher->user_photopath != null)
                     <img src="{{ asset('storage/' . $teacher->user_photopath) }}" alt="profile.png" class="profile-photo">
                 @else
                     <img src="{{ asset('default-image/profile.png') }}" alt="profile.png" class="profile-photo">
@@ -19,8 +22,10 @@
                 </div>
             </div>
         </div>
+    @endif
         <br>
         <div class="row">
+        @if ($students->isNotEmpty())
             <table class="table">
                 <thead>
                   <tr>
@@ -45,6 +50,10 @@
                 @endforeach
                 </tbody>
               </table>
+        @else
+            <p class="h3 fw-bold">No Student Has Been Set</p>
+        @endif
+            
         </div>
     </div>
 @endsection

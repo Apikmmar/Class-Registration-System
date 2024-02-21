@@ -30,6 +30,7 @@ class ManageClassController extends Controller
         $teacher = Auth::user();
         $class = Classroom::findOrFail($teacher->class_id);
         $students = User::where('role_id', 2)->where('class_id', $class->id)->get();
+        
         return view('ManageFormClass.manageclass', compact('teacher', 'class', 'students'));
     }
 
