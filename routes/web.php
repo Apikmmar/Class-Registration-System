@@ -73,4 +73,5 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/formclasslist', [TeacherManageClassController::class, 'formclasslist'])->name('formclasslist');
     Route::get('/classdetails/{id}', [TeacherManageClassController::class, 'classdetails'])->name('classdetails');
     Route::get('/manageclass', [TeacherManageClassController::class, 'manageclass'])->name('manageclass');
+    Route::put('/manageclass/id', [TeacherManageClassController::class, 'updateClassDetails'])->name('manageclass.edit');
 });
