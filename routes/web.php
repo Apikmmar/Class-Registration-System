@@ -74,4 +74,5 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/classdetails/{id}', [TeacherManageClassController::class, 'classdetails'])->name('classdetails');
     Route::get('/manageclass', [TeacherManageClassController::class, 'manageclass'])->name('manageclass');
     Route::put('/manageclass/id', [TeacherManageClassController::class, 'updateClassDetails'])->name('manageclass.edit');
+    Route::get('/manageclass/droprole/{id}', [TeacherManageClassController::class, 'dropStudentRole'])->name('manageclass.drop');
 });

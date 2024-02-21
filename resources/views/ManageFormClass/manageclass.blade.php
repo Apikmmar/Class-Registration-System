@@ -115,7 +115,7 @@
                         <td>{{ optional($std->addrole)->addrole_name ?: 'Class Member' }}</td>
                         <td>
                         @if ($std->addrole_id != null)
-                            <a href="">
+                            <a href="{{ route('manageclass.drop', ['id' => $std->id]) }}" onsubmit="Are Yo">
                                 <img src="{{ asset('default-image/delete.png') }}" class="operation_icon" alt="delete_user.png" style="margin-left: 20px;">
                             </a>
                         @else

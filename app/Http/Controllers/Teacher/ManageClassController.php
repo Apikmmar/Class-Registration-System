@@ -39,38 +39,26 @@ class ManageClassController extends Controller
         
         Classroom::findOrFail($class_id)->update(['class_name' => $request->class_name]);
 
-        if (User::where('id', $request->rep)->where('addrole_id', '=', null)->exists()) {
-            User::where('role_id', 2)->where('class_id', $class_id)->where('addrole_id', 2)->update(['addrole_id' => null]);
-            User::where('id', $request->rep)->update(['addrole_id' => 2]);
-        }
-        // else {
-        //     return redirect(route('manageclass'))->with('fail', 'Student Already Has Role In Class');
-        // }
+        User::where('role_id', 2)->where('class_id', $class_id)->where('addrole_id', 2)->update(['addrole_id' => null]);
+        User::where('id', $request->rep)->update(['addrole_id' => 2]);
 
-        if (User::where('id', $request->vicerep)->where('addrole_id', '=', null)->exists()) {
-            User::where('role_id', 3)->where('class_id', $class_id)->where('addrole_id', 3)->update(['addrole_id' => null]);
-            User::where('id', $request->vicerep)->update(['addrole_id' => 3]);
-        }
-        // else {
-        //     return redirect(route('manageclass'))->with('fail', 'Student Already Has Role In Class');
-        // }
+        User::where('role_id', 2)->where('class_id', $class_id)->where('addrole_id', 3)->update(['addrole_id' => null]);
+        User::where('id', $request->vicerep)->update(['addrole_id' => 3]);
 
-        if (User::where('id', $request->sec)->where('addrole_id', '=', null)->exists()) {
-            User::where('role_id', 4)->where('class_id', $class_id)->where('addrole_id', 4)->update(['addrole_id' => null]);
-            User::where('id', $request->sec)->update(['addrole_id' => 4]);
-        }
-        // else {
-        //     return redirect(route('manageclass'))->with('fail', 'Student Already Has Role In Class');
-        // }
+        User::where('role_id', 2)->where('class_id', $class_id)->where('addrole_id', 4)->update(['addrole_id' => null]);
+        User::where('id', $request->sec)->update(['addrole_id' => 4]);
 
-        if (User::where('id', $request->tre)->where('addrole_id', '=', null)->exists()) {
-            User::where('role_id', 5)->where('class_id', $class_id)->where('addrole_id', 5)->update(['addrole_id' => null]);
-            User::where('id', $request->tre)->update(['addrole_id' => 5]);
-        }
-        // else {
-        //     return redirect(route('manageclass'))->with('fail', 'Student Already Has Role In Class');
-        // }
+        User::where('role_id', 2)->where('class_id', $class_id)->where('addrole_id', 5)->update(['addrole_id' => null]);
+        User::where('id', $request->tre)->update(['addrole_id' => 5]);
+        
 
         return redirect(route('manageclass'))->with('success', 'Successfully Update Class Info');
+    }
+    // return redirect(route('manageclass'))->with('fail', 'Student Already Has Role In Class');
+
+    public function dropStudentRole($id) {
+        User::findOrFail($id)->update(['addrole_id' => null]);
+
+        return redirect(route('manageclass'))->with('success', 'Successfully Drop Student Role');
     }
 }
